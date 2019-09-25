@@ -28,33 +28,90 @@ var questions = [
 
 let startButton = document.getElementById("button");
 let first = document.getElementById("firstPage");
-let second = document.getElementById("questionsPage");
-let currentNumber=0;
-let questionContainer = document.getElementById("questionsLoad");
+let questionContainer = document.getElementById("questionsPage");
 let choices = document.getElementById("choices");
-let choiceButtons = document.getElementById("button");
+let choiceA = document.getElementById("a");
+let choiceB = document.getElementById("b");
+let choiceC = document.getElementById("c");
+let choiceD = document.getElementById("d");
+
+let score = 0;
+let currentNumber=0;
+let lastQuestion = questions.length-1;
 
 window.onload = function (){
-  second.style.display = "none";
+  questionContainer.style.display = "none";
+  choices.style.display = "none";
 }
 
 startButton.addEventListener("click", function(){
   first.style.display = "none";
-  second.style.display = "block";
+  questionContainer.style.display = "block";
+  choices.style.display = "block";
   enterQuestions();
-})
+});
 
-function enterQuestions (){
-    questionContainer.textContent = questions[currentNumber].title;
-    choices.innerHTML='';
-    for (var i = 0; i < questions[currentNumber].choices.length; i++){
-      choiceButtons.setAttribute("class", "button");
-      choiceButtons.setAttribute("value", questions[currentNumber].choices);
-      choiceButtons.textContent = questions[currentNumber].choices;
+choiceA.addEventListener("click", function(){
+  checkAnswer('a');
+});
 
-    }
+choiceB.addEventListener("click", function(){
+  checkAnswer('b');
+});
 
+choiceC.addEventListener("click", function(){
+  checkAnswer('c');
+});
+
+choiceD.addEventListener("click", function(){
+  checkAnswer('d');
+});
+
+function enterQuestions(){
+  let q = questions[currentNumber]
+  questionContainer.innerHTML = ''+ q.title + '';
+  choiceA.innerHTML = ''+ q.choices[0]+'';
+  choiceB.innerHTML = ''+ q.choices[1]+'';
+  choiceC.innerHTML = ''+ q.choices[2]+'';
+  choiceD.innerHTML = ''+ q.choices[3]+'';
+};
+
+function checkAnswer(answer){
+  if (answer === questions[currentNumber].answer){
+    score ++;
   }
+  else {
+    score;
+  }
+  if (currentNumber < lastQuestion) {
+    currentNumber++;
+    enterQuestions();
+  }
+};
+
+
+//onclick="checkAnswer('A')"
+
+// function enterQuestions(){
+//   questionContainer.textContent = questions[0].title;
+//   choices.textContent = questions[0].choices;
+// };
+
+
+
+// function enterQuestions (){
+//     questionContainer.textContent = questions[currentNumber].title;
+//     choices.innerHTML='';
+//     for (var i = 0; i < questions[currentNumber].choices.length; i++){
+//       let choiceButtons = document.createElement("button");
+//       choiceButtons.setAttribute("class", "button");
+//       choiceButtons.setAttribute("value", questions[i].choices);
+//       choiceButtons
+//       choices.appendChild(choiceButtons);
+
+//     }
+
+//   }
 
 // on button clicked, go to next function -> create a nextQuestion ();
 
