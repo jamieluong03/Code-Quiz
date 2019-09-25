@@ -81,20 +81,14 @@ function enterQuestions(){
   });
 };
 
+
 function checkAnswer(choice){
   if (choice === questions[currentNumber].answer){
     score ++;
-    setTimeout(function(){ 
-      result.style.display = "block";
-      result.textContent = "Correct!";
-    }, 3000);
+    document.getElementById("result").innerHTML = "Correct"
   }
   else {
-    score;
-    setTimeout(function(){ 
-      result.style.display = "block";
-      result.textContent = "Wrong!";
-    }, 3000);
+    document.getElementById("result").innerHTML = "Wrong"
   }
   if (currentNumber < lastQuestion) {
     currentNumber++;
@@ -104,6 +98,30 @@ function checkAnswer(choice){
     quizScore();
   }
 };
+
+// function checkAnswer(choice){
+//   if (choice === questions[currentNumber].answer){
+//     score ++;
+//     setTimeout(function(){ 
+//       result.style.display = "block";
+//       result.textContent = "Correct!";
+//     }, 3000);
+//   }
+//   else {
+//     score;
+//     setTimeout(function(){ 
+//       result.style.display = "block";
+//       result.textContent = "Wrong!";
+//     }, 3000);
+//   }
+//   if (currentNumber < lastQuestion) {
+//     currentNumber++;
+//     enterQuestions();
+//   }
+//   else {
+//     quizScore();
+//   }
+// };
 
 
 function quizScore (){
