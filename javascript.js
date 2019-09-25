@@ -34,6 +34,8 @@ let choiceA = document.getElementById("a");
 let choiceB = document.getElementById("b");
 let choiceC = document.getElementById("c");
 let choiceD = document.getElementById("d");
+let result = document.getElementById("result");
+let scoreContainer = document.getElementById("score");
 
 let score = 0;
 let currentNumber=0;
@@ -51,76 +53,60 @@ startButton.addEventListener("click", function(){
   enterQuestions();
 });
 
-choiceA.addEventListener("click", function(){
-  checkAnswer('a');
-});
 
-choiceB.addEventListener("click", function(){
-  checkAnswer('b');
-});
-
-choiceC.addEventListener("click", function(){
-  checkAnswer('c');
-});
-
-choiceD.addEventListener("click", function(){
-  checkAnswer('d');
-});
 
 function enterQuestions(){
   let q = questions[currentNumber]
-  questionContainer.innerHTML = ''+ q.title + '';
-  choiceA.innerHTML = ''+ q.choices[0]+'';
-  choiceB.innerHTML = ''+ q.choices[1]+'';
-  choiceC.innerHTML = ''+ q.choices[2]+'';
-  choiceD.innerHTML = ''+ q.choices[3]+'';
+  questionContainer.innerHTML = currentNumber+1 + ":   " + q.title;
+  choiceA.innerHTML = 'A:   '+ q.choices[0];
+  choiceB.innerHTML = 'B:   '+ q.choices[1];
+  choiceC.innerHTML = 'C:   '+ q.choices[2];
+  choiceD.innerHTML = 'D:   '+ q.choices[3];
+
+
+  choiceA.addEventListener("click", function(){
+  checkAnswer('a');
+  });
+
+  choiceB.addEventListener("click", function(){
+  checkAnswer('b');
+  });
+
+  choiceC.addEventListener("click", function(){
+  checkAnswer('c');
+  });
+
+  choiceD.addEventListener("click", function(){
+  checkAnswer('d');
+  });
 };
 
-function checkAnswer(answer){
-  if (answer === questions[currentNumber].answer){
+function checkAnswer(choice){
+  if (choice === questions[currentNumber].answer){
     score ++;
+    setTimeout(function(){ 
+      result.style.display = "block";
+      result.textContent = "Correct!";
+    }, 3000);
   }
   else {
     score;
+    setTimeout(function(){ 
+      result.style.display = "block";
+      result.textContent = "Wrong!";
+    }, 3000);
   }
   if (currentNumber < lastQuestion) {
     currentNumber++;
     enterQuestions();
   }
+  else {
+    quizScore();
+  }
 };
 
 
-//onclick="checkAnswer('A')"
-
-// function enterQuestions(){
-//   questionContainer.textContent = questions[0].title;
-//   choices.textContent = questions[0].choices;
-// };
-
-
-
-// function enterQuestions (){
-//     questionContainer.textContent = questions[currentNumber].title;
-//     choices.innerHTML='';
-//     for (var i = 0; i < questions[currentNumber].choices.length; i++){
-//       let choiceButtons = document.createElement("button");
-//       choiceButtons.setAttribute("class", "button");
-//       choiceButtons.setAttribute("value", questions[i].choices);
-//       choiceButtons
-//       choices.appendChild(choiceButtons);
-
-//     }
-
-//   }
-
-// on button clicked, go to next function -> create a nextQuestion ();
-
-
-// on button clicked, equate to whether the it is correct or wrong with if/else statements
-
-
-//create scores
-
-
-//create timers
-
+function quizScore (){
+  scoreContainer.style.display = "block";
+  scoreContainer.innerHTML = score;
+}
