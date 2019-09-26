@@ -7,7 +7,14 @@
 </head>
 <body>
 
-<div id="point"></div>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <button class="btn btn-outline-primary" type="button">View Highscore</button>
+    <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a>Timer: <div id="timer"></div> <span class="sr-only">(current)</span></a>
+              
+            </li>
+</nav>
 
 <div class="container">
     <div class="card">
@@ -21,14 +28,12 @@
 
                 <div id="firstPage">
                     <h4>So how much do you know about arrays?</h4>
+                    <h4>You have 75 seconds!</h4>
                     <br><br>
                 <button id="button" class="btn btn-primary btn-lg start-button">
                 <span class="fa fa-plus"></span> Start Quiz</button>
                 </div>
-
-                <h3 id="questionsPage">
-                    
-                </h3>
+                <h3 id="questionsPage"></h3>
                     <br>
                 <div id="choices">
                     <button class="button btn-primary btn-md rounded" id="a"></button>

@@ -39,10 +39,13 @@ let scoreContainer = document.getElementById("score");
 let form = document.getElementById("form");
 let submitButton = document.getElementById("submitButton");
 let nameInput = document.querySelector("#name");
+let timer = document.querySelector("#timer");
 
 let score = 0;
 let currentNumber=0;
 let lastQuestion = questions.length-1;
+let secondsLeft = 75;
+let timerInterval
 
 let q = questions[currentNumber]
 
@@ -52,12 +55,26 @@ window.onload = function (){
   form.style.display = "none";
 };
 
+
 startButton.addEventListener("click", function(){
   first.style.display = "none";
   questionContainer.style.display = "block";
   choices.style.display = "block";
+  setTime();
   enterQuestions();
 });
+
+
+function setTime(){
+    timerInterval = setInterval(function(){
+    secondsLeft--;
+    timer.innerHTML = secondsLeft;
+
+    if (secondsLeft===0){
+      quizScore();
+    }
+  },1000);
+};
 
 function enterQuestions(){
   q = questions[currentNumber]
@@ -86,7 +103,6 @@ checkAnswer(q.choices[3]);
 
 
 function checkAnswer(choice){
-  console.log('WHAT')
   if (choice === questions[currentNumber].answer){
     score++;
       result.innerHTML = "Correct!";
@@ -114,6 +130,8 @@ function quizScore(){
   choices.style.display = "none";
   scoreContainer.innerHTML = "Your final score is: " + score;
   form.style.display = "block";
+  clearInterval(timerInterval);
+  timer.innerHTML = "0";
 
 }
 
