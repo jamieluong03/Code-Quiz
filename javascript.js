@@ -23,8 +23,8 @@ var questions = [
     title: "How do you add 'banana' to the end of the array? fruits = ['orange', 'apple', 'watermelon', 'peaches']",
     choices: ["fruits.remove('banana')", "fruits.shift();", "fruits.push('banana')", "fruits.push();"],
     answer: "fruits.push('banana')"
-  },
-]
+  }
+];
 
 let startButton = document.getElementById("button");
 let first = document.getElementById("firstPage");
@@ -44,7 +44,7 @@ let lastQuestion = questions.length-1;
 window.onload = function (){
   questionContainer.style.display = "none";
   choices.style.display = "none";
-}
+};
 
 startButton.addEventListener("click", function(){
   first.style.display = "none";
@@ -65,19 +65,19 @@ function enterQuestions(){
 
 
   choiceA.addEventListener("click", function(){
-  checkAnswer('a');
+  checkAnswer(q.choices[0]);
   });
 
   choiceB.addEventListener("click", function(){
-  checkAnswer('b');
+  checkAnswer(q.choices[1]);
   });
 
   choiceC.addEventListener("click", function(){
-  checkAnswer('c');
+  checkAnswer(q.choices[2]);
   });
 
   choiceD.addEventListener("click", function(){
-  checkAnswer('d');
+  checkAnswer(q.choices[3]);
   });
 };
 
@@ -85,10 +85,10 @@ function enterQuestions(){
 function checkAnswer(choice){
   if (choice === questions[currentNumber].answer){
     score ++;
-    document.getElementById("result").innerHTML = "Correct"
+      result.innerHTML = "Correct!";
   }
   else {
-    document.getElementById("result").innerHTML = "Wrong"
+      result.innerHTML = "Wrong!";
   }
   if (currentNumber < lastQuestion) {
     currentNumber++;
@@ -99,32 +99,9 @@ function checkAnswer(choice){
   }
 };
 
-// function checkAnswer(choice){
-//   if (choice === questions[currentNumber].answer){
-//     score ++;
-//     setTimeout(function(){ 
-//       result.style.display = "block";
-//       result.textContent = "Correct!";
-//     }, 3000);
-//   }
-//   else {
-//     score;
-//     setTimeout(function(){ 
-//       result.style.display = "block";
-//       result.textContent = "Wrong!";
-//     }, 3000);
-//   }
-//   if (currentNumber < lastQuestion) {
-//     currentNumber++;
-//     enterQuestions();
-//   }
-//   else {
-//     quizScore();
-//   }
-// };
-
-
-function quizScore (){
-  scoreContainer.style.display = "block";
-  scoreContainer.innerHTML = score;
+function quizScore(){
+  result.style.display="none";
+  questionContainer.style.display = "none";
+  choices.style.display = "none";
+  scoreContainer.innerHTML = "Total Score " + score;
 }
