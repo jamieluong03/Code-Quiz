@@ -9,11 +9,11 @@
 
 <nav class="navbar navbar-light bg-light justify-content-between">
     <button class="btn btn-outline-primary" type="button">View Highscore</button>
-    <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a>Timer: <div id="timer"></div> <span class="sr-only">(current)</span></a>
-              
-            </li>
+    <ul class="navbar-nav mr-4">
+        <li class="nav-item active">
+            <div id="timer">Timer: <span class="sr-only">(current)</span></div>
+        </li>
+    </ul>
 </nav>
 
 <div class="container">
@@ -28,7 +28,7 @@
 
                 <div id="firstPage">
                     <h4>So how much do you know about arrays?</h4>
-                    <h4>You have 75 seconds!</h4>
+                    <h4>You have 50 seconds!</h4>
                     <br><br>
                 <button id="button" class="btn btn-primary btn-lg start-button">
                 <span class="fa fa-plus"></span> Start Quiz</button>
@@ -52,6 +52,13 @@
                             <input type="text" name="name" id="name"/>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                </div>
+                <div id="highscore">
+                    <h2>Highscores</h2>
+                    <div class="row" id="highscoreList">
+                    </div>
+                    <button id="home" class="btn btn-primary btn-lg start-button">
+                        <span class="fa fa-plus" href="#"></span>Home</button>
                 </div>
             </div>
         </div>
