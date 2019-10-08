@@ -51,7 +51,7 @@ let secondsLeft = 50;
 let timerInterval
 
 let q = questions[currentNumber]
-
+let scoresArray=localStorage.getItem("totalScore").split(",")
 window.onload = function (){
   questionContainer.style.display = "none";
   choices.style.display = "none";
@@ -129,10 +129,10 @@ function quizScore(){
   result.style.display="none";
   questionContainer.style.display = "none";
   choices.style.display = "none";
-  scoreContainer.innerHTML = "Your final score is: " + score;
+  scoreContainer.innerHTML = "Your final score is: " + secondsLeft;
   form.style.display = "block";
   clearInterval(timerInterval);
-  timer.innerHTML = "Timer: 0";
+ // timer.innerHTML = "Timer: 0";
   highscore.style.display="none";
 }
 
@@ -140,18 +140,53 @@ submitButton.addEventListener("click", function(){
   event.preventDefault();
   let name = document.querySelector("#name").value;
   localStorage.setItem("name", name);
+  localStorage.setItem("score", secondsLeft);
   form.style.display="none";
   highscore.style.display="block";
+  console.log(scoresArray)
+  scoresArray.push([name, secondsLeft])
+
+  //
+localStorage.setItem('totalScore', scoresArray)
+  //
   renderLastUser();
 })
 
 function renderLastUser (){
   var userName = localStorage.getItem("name");
-  nameRecorded.textContent = userName;
+  var finalScore = localStorage.getItem("score");
 
+  //  nameRecorded.append(userName);
+  console.log("score:", finalScore)
+ // nameRecorded.append(sec)
+  nameRecorded.append(`Name = ${userName} Score = ${finalScore}`)
+  let showlist = localStorage.getItem("totalScore").split(",")
+  console.log(showlist)   //[name,number,name,numbre]
+   for (var i = 0; i < showlist.length; i+=2){
+     console.log(i)
+
+     nameRecorded.append(showlist[i],showlist[i+1]);
+   }
 }
 
 homeButton.addEventListener("click", function(){
   window.location.reload();
 
 ;})
+
+
+// content in a variable // number / string / array (list of element ) [0] [1] / loop  (for, map) // objects  // functions
+
+// array vs ojects
+var array = [3, 4, 5,6]
+var array =["a", "b", "c"]   array[0]
+var array =[{key:value},{},{}]
+
+
+var car={
+
+  model:"toyota",
+  color:"white",
+  year: "2015",
+}
+car.model
